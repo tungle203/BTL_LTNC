@@ -1,0 +1,23 @@
+.wrapper {
+  width: 200px;
+  background-color: #2b2932;
+  font-weight: 700;
+  font-size: large;
+}
+
+.wrapper-ul {
+  list-style: none;
+}
+
+.wrapper-ul li {
+  margin-bottom: 20px;
+}
+.link {
+  color: azure;
+  background-color: transparent;
+  text-decoration: none;
+  cursor: pointer;
+}
+.icon {
+  margin-right: 6px;
+}
