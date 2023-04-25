@@ -1,16 +1,22 @@
+*{
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  text-decoration: 0;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  height: 100vh;
+  width: 100vw;
 }
 .container {
-  min-height: 600px;
   height: 100%;
-  display: flex;
   width: 100%;
-  padding: 0 32;
+  display: flex;
 }
 .content {
-  padding: 20px;
   flex: 1;
+  background-color: #dbe2db;
 }
