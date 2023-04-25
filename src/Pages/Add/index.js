@@ -1,7 +1,9 @@
+import ProductMenu from '../../Component/ProductMenu';
 function Add() {
   return (
     <div>
-      <h2>Add Pages</h2>
+      <input placeholder=""></input>
+      <ProductMenu />
     </div>
   );
 }

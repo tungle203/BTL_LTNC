@@ -17,3 +17,7 @@
   background-color: transparent;
   cursor: pointer;
 }
+
+.active {
+  color: red;
+}

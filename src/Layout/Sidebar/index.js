@@ -17,7 +17,7 @@ function Sidebar() {
       <ul className={cx('wrapper-ul')}>
         {actions.map((action, index) => (
           <li key={index}>
-            <NavLink to={action.to} className={cx('link')}>
+            <NavLink to={action.to} className={(nav) => cx('link', { active: nav.isActive })}>
               <span className={cx('icon')}>{action.icon}</span>
               {action.title}
             </NavLink>

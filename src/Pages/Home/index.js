@@ -1,7 +1,7 @@
 import { Product } from '../../Class/Product';
 
 function Home() {
-  const product1 = new Product('Sản phẩm 1', 100000, 'Mô tả sản phẩm 1');
+  const product1 = new Product('Sản phẩm 1', 100000);
 
   return (
     <div>

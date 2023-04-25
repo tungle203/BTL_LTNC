@@ -1,8 +1,7 @@
 export class Product {
-  constructor(name, price, description) {
+  constructor(name, price) {
     this.name = name;
     this.price = price;
-    this.description = description;
   }
 
   setName(name) {
@@ -13,10 +12,6 @@ export class Product {
     this.price = price;
   }
 
-  setDescription(description) {
-    this.description = description;
-  }
-
   getName() {
     return this.name;
   }
@@ -24,8 +19,7 @@ export class Product {
   getPrice() {
     return this.price;
   }
-
-  getDescription() {
-    return this.description;
-  }
 }
+
+export class Drinks extends Product {}
+export class Foods extends Product {}
