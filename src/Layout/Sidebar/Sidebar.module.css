@@ -1,5 +1,5 @@
 .wrapper {
-  width: 14vw;
+  width: 15vw;
   min-width: 140px;
   background-color: #1c1d2b;
 }
@@ -7,17 +7,24 @@
 .link {
   display: flex;
   width: 100%;
-  padding: 10px 0px 10px 25%;
+  height: 70px;
+  padding-left: 25%;
   border: 1px solid black;
   align-items: center;
   line-height: 40px;
-  font-size: 15px;
+  font-size: 16px;
   justify-content: left;
-  color: white;
+  color: rgb(219, 210, 210);
   background-color: transparent;
   cursor: pointer;
+  transition: 0.25s;
 }
 
 .active {
-  color: red;
+  color: rgb(255, 72, 72) !important;
+}
+
+.link:hover{
+  color: white;
+  background-color: #252737;
 }
