@@ -1,23 +1,19 @@
 .wrapper {
-  width: 200px;
-  background-color: #2b2932;
-  font-weight: 700;
-  font-size: large;
+  width: 14vw;
+  min-width: 140px;
+  background-color: #1c1d2b;
 }
 
-.wrapper-ul {
-  list-style: none;
-}
-
-.wrapper-ul li {
-  margin-bottom: 20px;
-}
 .link {
-  color: azure;
+  display: flex;
+  width: 100%;
+  padding: 10px 0px 10px 25%;
+  border: 1px solid black;
+  align-items: center;
+  line-height: 40px;
+  font-size: 15px;
+  justify-content: left;
+  color: white;
   background-color: transparent;
-  text-decoration: none;
   cursor: pointer;
-}
-.icon {
-  margin-right: 6px;
 }
