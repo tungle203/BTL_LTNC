@@ -2,7 +2,7 @@ import { useState } from 'react';
 import classNames from 'classnames/bind';
 
 import { productList } from '../../Class/Product';
-import ProductCard from '../ProductCard';
+import ProductCard from './ProductCard';
 import ModifyCard from '../ModifyCard';
 import styles from './ProductMenu.module.css';
 
