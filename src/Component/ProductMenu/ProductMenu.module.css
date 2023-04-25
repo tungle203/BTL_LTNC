@@ -1,5 +1,9 @@
 .wrapper {
+  font-size: 20px;
+  padding: 5px 15px;
 }
 .list {
+  margin: 20px 0px 50px;
   display: flex;
+  justify-content: space-around;
 }

@@ -9,6 +9,7 @@ import styles from './ProductMenu.module.css';
 const cx = classNames.bind(styles);
 
 function ProductMenu() {
+
   const [show, setShow] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(productList[0]);
   return (
@@ -27,6 +28,13 @@ function ProductMenu() {
           </li>
         ))}
         {<ModifyCard classNames={show ? 'show' : 'hide'} product={currentProduct} />}
+      </div>
+
+      <h4>Thức uống</h4>
+      <div className={cx('list')}>
+        {productList.map((product, index) => (
+          <li key={index}>{<ProductCard product={product} />}</li>
+        ))}
       </div>
     </div>
   );
