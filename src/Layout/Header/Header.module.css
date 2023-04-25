@@ -1,9 +1,9 @@
 .header{
+  height: 55px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #588fed;
-  font-size: 25px;
-  height: 8vh;
-  min-height: 32px;
+  font-size: 18px;
+  color: white;
 };
