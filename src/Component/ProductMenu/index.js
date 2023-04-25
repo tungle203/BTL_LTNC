@@ -9,9 +9,16 @@ import styles from './ProductMenu.module.css';
 const cx = classNames.bind(styles);
 
 function ProductMenu() {
-
   const [show, setShow] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(productList[0]);
+
+  const handleSubmit = () => {
+    setShow(false);
+  };
+
+  const handleCancel = () => {
+    setShow(false);
+  };
   return (
     <div className={cx('wrapper')}>
       <h4>Đồ ăn</h4>
@@ -27,7 +34,14 @@ function ProductMenu() {
             {<ProductCard product={product} />}
           </li>
         ))}
-        {<ModifyCard classNames={show ? 'show' : 'hide'} product={currentProduct} />}
+        {
+          <ModifyCard
+            classNames={show ? 'show' : 'hide'}
+            product={currentProduct}
+            onSubmit={handleSubmit}
+            onCancel={handleCancel}
+          />
+        }
       </div>
 
       <h4>Thức uống</h4>

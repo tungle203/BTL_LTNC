@@ -1,7 +1,7 @@
 .wrapper {
   width: 120px;
   height: 120px;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   padding: 20px;
   background-color: #f3ab5f;
   border-radius: 8px;
@@ -10,13 +10,13 @@
   font-size: 20px;
   text-align: center;
   display: flex;
-  align-items:center;
-  justify-content:center;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: 0.15s;
 }
 
-.wrapper:hover{
+.wrapper:hover {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   background-color: #feb15f;
   font-size: 21px;

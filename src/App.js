@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Routes, HashRouter } from 'react-router-dom';
 
 import Layout from './Layout';
 import Home from './Pages/Home';
@@ -8,7 +8,7 @@ import Add from './Pages/Add';
 
 function App() {
   return (
-    <Router>
+    <HashRouter>
       <div className="app">
         <Layout>
           <Routes>
@@ -18,7 +18,7 @@ function App() {
           </Routes>
         </Layout>
       </div>
-    </Router>
+    </HashRouter>
   );
 }
 
