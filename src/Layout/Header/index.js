@@ -6,7 +6,7 @@ const cx = classNames.bind(styles);
 function Header() {
   return (
     <header className={cx('header')}>
-      <h2>Cửa hàng tiện lợi</h2>
+      <h2>QUẢN LÝ KHO HÀNG</h2>
     </header>
   );
 }

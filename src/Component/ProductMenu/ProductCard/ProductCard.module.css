@@ -3,21 +3,23 @@
   height: 120px;
   box-sizing: border-box;
   padding: 20px;
-  background-color: #f3ab5f;
+  background-color: #f6ad5f;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: -2px 2px 15px 2px rgba(0, 0, 0, 0.1);
   color: white;
-  font-size: 20px;
-  text-align: center;
+  font-size: 21px;
   display: flex;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
-  transition: 0.15s;
+  transition: 0.2s;
 }
 
 .wrapper:hover {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-  background-color: #feb15f;
-  font-size: 21px;
+  box-shadow: -2px 2px 15px 2px rgba(0, 0, 0, 0.18);
+  background-color: #feb465;
+  font-size: 22px;
+}
+
+.product-name{
+  text-align: center;
+  margin: auto;
 }

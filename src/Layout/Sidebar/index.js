@@ -13,7 +13,7 @@ function Sidebar() {
     { title: 'Tình trạng', to: '/status', icon: <FontAwesomeIcon icon={faRotate} /> },
   ];
   return (
-    <div className={cx('sidebar')} style={{ width: '15vw', minWidth: '140px', backgroundColor: '#1c1d2b' }}>
+    <div className={cx('wrapper')}>
       <ul className={cx('wrapper-ul')}>
         {actions.map((action, index) => (
           <li key={index}>
