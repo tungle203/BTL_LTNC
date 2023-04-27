@@ -1,12 +1,14 @@
-import { Product } from '../../Class/Product';
+import { BeverageList } from '../../Class/Product';
 
 function Home() {
-  const product1 = new Product('Sản phẩm 1', 100000);
-
   return (
     <div>
       <h2>Home Page</h2>
-      <p>{product1.getName()}</p>
+      <p>
+        {BeverageList[0].getGoods().map((item, index) => (
+          <p key={index}>{item.getQuantity()}</p>
+        ))}
+      </p>
     </div>
   );
 }
