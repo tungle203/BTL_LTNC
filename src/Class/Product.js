@@ -1,4 +1,5 @@
-class Goods {
+export class Goods {
+
   constructor(id, quantity, expiryDate) {
     this.id = id;
     this.quantity = quantity;
@@ -22,9 +23,7 @@ class Goods {
   }
 
   toString() {
-    return `ID: ${this.id}, Quantity: ${
-      this.quantity
-    }, Expiry Date: ${this.expiryDate.getFullYear()}/${this.expiryDate.getMonth()}/${this.expiryDate.getDay()}`;
+    return `ID: ${this.id}, Quantity: ${this.quantity}, Expiry Date: ${this.expiryDate}`;
   }
 }
 
@@ -34,6 +33,8 @@ class Product {
     this.price = price;
     this.quantity = 0;
     this.goods = [];
+    this.description = '';
+
   }
 
   setName(name) {
@@ -51,7 +52,13 @@ class Product {
   getPrice() {
     return this.price;
   }
-
+  getGoods() {
+    return this.goods;
+  }
+  getDes() {
+    return this.description;
+  }
+  // Tính khoảng cách giữa ngày hiện tại và ngày của đối tượng Goods
   getDaysDiff(expiryDate) {
     const today = new Date();
     const diffTime = Math.abs(expiryDate - today);
@@ -59,6 +66,7 @@ class Product {
     return diffDays;
   }
 
+  // Sắp xếp mảng goods theo khoảng cách từ bé đến lớn
   sort() {
     this.goods.sort((a, b) => {
       const diffA = this.getDaysDiff(new Date(a.getExpiryDate()));
@@ -110,8 +118,6 @@ class Product {
     let description = `Thống kê hàng xóa ${this.name}: ${this.quantity} sản phẩm\n`;
     for (let i = 0; i < this.goods.length; i++) {
       description += this.goods[i].toString() + '\n';
-    }
-    return description;
   }
 }
 
@@ -164,13 +170,8 @@ class Food extends Product {
 }
 
 const Coca = new Beverage('Coca Cola', 10000, 330, 'Nguyên Bản');
-const coca1 = new Goods(11, 100, new Date('2024-1-1'));
-const coca2 = new Goods(12, 350, new Date('2024-8-1'));
-const coca3 = new Goods(13, 200, new Date('2023-5-1'));
+const Pepsi = new Beverage('Pepsi', 10000, 330, 'Nguyên Bản');
+const Vinamilk = new Beverage('Vinamilk', 8000, 250, 'Sữa tươi tiệt trùng');
+const Huda = new Beverage('Bia Huda', 18000, 330, 'Đậm tình miền Trung');
 
-Coca.add(coca2);
-Coca.add(coca3);
-Coca.add(coca1);
-Coca.remove(12, 75);
-console.log(Coca.toString());
-console.log(Coca.getAlmostExpired());
+export const BeverageList = [Coca, Pepsi, Vinamilk, Huda];

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import classNames from 'classnames/bind';
 
-import { productList } from '../../Class/Product';
+import { BeverageList } from '../../Class/Product';
 import ProductCard from './ProductCard';
 import ModifyCard from '../ModifyCard';
 import styles from './ProductMenu.module.css';
@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 
 function ProductMenu() {
   const [show, setShow] = useState(false);
-  const [currentProduct, setCurrentProduct] = useState(productList[0]);
+  const [currentProduct, setCurrentProduct] = useState(BeverageList[0]);
 
   const handleSubmit = () => {
     setShow(false);
@@ -23,7 +23,7 @@ function ProductMenu() {
     <div className={cx('wrapper')}>
       <h4>Đồ ăn</h4>
       <div className={cx('list')}>
-        {productList.map((product, index) => (
+        {BeverageList.map((product, index) => (
           <li
             key={index}
             onClick={() => {
@@ -46,7 +46,7 @@ function ProductMenu() {
 
       <h4>Thức uống</h4>
       <div className={cx('list')}>
-        {productList.map((product, index) => (
+        {BeverageList.map((product, index) => (
           <li key={index}>{<ProductCard product={product} />}</li>
         ))}
       </div>
