@@ -148,5 +148,5 @@ CocaCola.add(200, new Date(1, 4, 2025));
 CocaCola.remove(50);
 CocaCola.getDesription();
 
-// const Pepsi = new Beverage('Pepsi', 9000, 300, 'Không calo');
-// const Mirinda = new Beverage('Mirinda', 7000, 250, 'Vị cam');
+const Pepsi = new Beverage('Pepsi', 9000, 300, 'Không calo');
+const Mirinda = new Beverage('Mirinda', 7000, 250, 'Vị cam');
