@@ -1,21 +1,37 @@
-export class Date {
-  constructor(day, month, year) {
-    this.day = day;
-    this.month = month;
-    this.year = year;
+class Goods {
+  constructor(id, quantity, expiryDate) {
+    this.id = id;
+    this.quantity = quantity;
+    this.expiryDate = expiryDate;
+  }
+
+  getId() {
+    return this.id;
+  }
+
+  getQuantity() {
+    return this.quantity;
+  }
+
+  getExpiryDate() {
+    return this.expiryDate;
+  }
+
+  remove(numOfProduct) {
+    this.quantity -= numOfProduct;
   }
 
   toString() {
-    return `${this.day}/${this.month}/${this.year}`;
+    return `ID: ${this.id}, Quantity: ${this.quantity}, Expiry Date: ${this.expiryDate}`;
   }
 }
 
-export class Product {
+class Product {
   constructor(name, price) {
     this.name = name;
     this.price = price;
     this.quantity = 0;
-    this.expiryDate = [];
+    this.goods = [];
   }
 
   setName(name) {
@@ -34,42 +50,49 @@ export class Product {
     return this.price;
   }
 
-  add(numOfProduct, expiryDate) {
-    for (let i = 0; i < numOfProduct; i++) {
-      this.expiryDate.push(expiryDate);
-    }
-    this.quantity += numOfProduct;
+  // Tính khoảng cách giữa ngày hiện tại và ngày của đối tượng Goods
+  getDaysDiff(expiryDate) {
+    const today = new Date();
+    const diffTime = Math.abs(expiryDate - today);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays;
   }
 
-  remove(numOfProduct) {
-    if (this.quantity === 0) {
-      console.log('Không có sản phẩm để xóa');
-      return;
-    }
+  // Sắp xếp mảng goods theo khoảng cách từ bé đến lớn
+  sort() {
+    this.goods.sort((a, b) => {
+      const diffA = this.getDaysDiff(new Date(a.getExpiryDate()));
+      const diffB = this.getDaysDiff(new Date(b.getExpiryDate()));
+      return diffA - diffB;
+    });
+  }
 
-    for (let i = 0; i < numOfProduct; i++) {
-      if (this.expiryDate.length === 0) {
+  add(goods) {
+    this.goods.push(goods);
+    this.quantity += goods.getQuantity();
+    this.sort();
+  }
+
+  remove(id, numOfProduct) {
+    for (let i = 0; i < this.goods.length; i++) {
+      if (id == this.goods[i].id) {
+        this.goods[i].remove(numOfProduct);
         break;
       }
-      this.expiryDate.splice(0, 1);
     }
-    this.quantity -= removedProducts;
+    this.quantity -= numOfProduct;
   }
 
-  getDesription() {
-    let description = `Tên sản phẩm: ${this.name}\nGiá sản phẩm: ${this.price} đồng\nSố lượng sản phẩm: ${this.quantity}\nNgày hết hạn:\n`;
-    if (this.expiryDate.length === 0) {
-      description += 'Không có thông tin ngày hết hạn\n';
-    } else {
-      for (let i = 0; i < this.expiryDate.length; i++) {
-        description += `- ${i + 1}. ${this.expiryDate[i].toString()}\n`;
-      }
+  toString() {
+    let descript = `Thống kê hàng xóa ${this.name}: ${this.quantity} sản phẩm\n`;
+    for (let i = 0; i < this.goods.length; i++) {
+      descript += this.goods[i].toString() + '\n';
     }
-    return description;
+    return descript;
   }
 }
 
-export class Beverage extends Product {
+class Beverage extends Product {
   constructor(name, price, volume, flavor) {
     super(name, price);
     this.volume = volume;
@@ -91,21 +114,9 @@ export class Beverage extends Product {
   getFlavor() {
     return this.flavor;
   }
-
-  getDesription() {
-    let description = `Tên sản phẩm: ${this.name}\nGiá sản phẩm: ${this.price} đồng\nSố lượng sản phẩm: ${this.quantity}\nThể tích: ${this.volume}ml\nHương vị: ${this.flavor}\nNgày hết hạn:\n`;
-    if (this.expiryDate.length === 0) {
-      description += 'Không có thông tin ngày hết hạn\n';
-    } else {
-      for (let i = 0; i < this.expiryDate.length; i++) {
-        description += `- ${i + 1}. ${this.expiryDate[i].toString()}\n`;
-      }
-    }
-    return description;
-  }
 }
 
-export class Food extends Product {
+class Food extends Product {
   constructor(name, price, weight, calories) {
     super(name, price);
     this.weight = weight;
@@ -127,26 +138,15 @@ export class Food extends Product {
   getCalories() {
     return this.calories;
   }
-
-  getDesription() {
-    let description = `Tên sản phẩm: ${this.name}\nGiá sản phẩm: ${this.price} đồng\nSố lượng sản phẩm: ${this.quantity}\nKhối lượng: ${this.volume}g\nCalories: ${this.flavor}\nNgày hết hạn:\n`;
-    if (this.expiryDate.length === 0) {
-      description += 'Không có thông tin ngày hết hạn\n';
-    } else {
-      for (let i = 0; i < this.expiryDate.length; i++) {
-        description += `- ${i + 1}. ${this.expiryDate[i].toString()}\n`;
-      }
-    }
-    return description;
-  }
 }
 
-const CocaCola = new Beverage('Coca Cola', 10000, 330, 'Nguyên Bản');
-CocaCola.add(100, new Date(1, 1, 2024));
-CocaCola.add(350, new Date(1, 10, 2024));
-CocaCola.add(200, new Date(1, 4, 2025));
-CocaCola.remove(50);
-CocaCola.getDesription();
+const Coca = new Beverage('Coca Cola', 10000, 330, 'Nguyên Bản');
+const coca1 = new Goods(11, 100, new Date('2024-1-1'));
+const coca2 = new Goods(12, 350, new Date('2024-8-1'));
+const coca3 = new Goods(13, 200, new Date('2025-4-1'));
 
-const Pepsi = new Beverage('Pepsi', 9000, 300, 'Không calo');
-const Mirinda = new Beverage('Mirinda', 7000, 250, 'Vị cam');
+Coca.add(coca2);
+Coca.add(coca3);
+Coca.add(coca1);
+Coca.remove(12, 75);
+console.log(Coca.toString());
