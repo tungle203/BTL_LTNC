@@ -15,9 +15,16 @@ export class Product {
     this.name = name;
     this.price = price;
     this.quantity = 0;
-    this.expiryDate = [];
+    this.list = [];
+  }
+  // item = {expiryDate, count}
+  add(item) {
+    this.list.push(item);
   }
 
+  getList() {
+    return this.list;
+  }
   setName(name) {
     this.name = name;
   }
@@ -34,27 +41,20 @@ export class Product {
     return this.price;
   }
 
-  add(numOfProduct, expiryDate) {
-    for (let i = 0; i < numOfProduct; i++) {
-      this.expiryDate.push(expiryDate);
-    }
-    this.quantity += numOfProduct;
-  }
+  // remove(numOfProduct) {
+  //   if (this.quantity === 0) {
+  //     console.log('Không có sản phẩm để xóa');
+  //     return;
+  //   }
 
-  remove(numOfProduct) {
-    if (this.quantity === 0) {
-      console.log('Không có sản phẩm để xóa');
-      return;
-    }
-
-    for (let i = 0; i < numOfProduct; i++) {
-      if (this.expiryDate.length === 0) {
-        break;
-      }
-      this.expiryDate.splice(0, 1);
-    }
-    this.quantity -= removedProducts;
-  }
+  //   for (let i = 0; i < numOfProduct; i++) {
+  //     if (this.expiryDate.length === 0) {
+  //       break;
+  //     }
+  //     this.expiryDate.splice(0, 1);
+  //   }
+  //   this.quantity -= removedProducts;
+  // }
 
   getDesription() {
     let description = `Tên sản phẩm: ${this.name}\nGiá sản phẩm: ${this.price} đồng\nSố lượng sản phẩm: ${this.quantity}\nNgày hết hạn:\n`;
@@ -142,11 +142,7 @@ export class Food extends Product {
 }
 
 const CocaCola = new Beverage('Coca Cola', 10000, 330, 'Nguyên Bản');
-CocaCola.add(100, new Date(1, 1, 2024));
-CocaCola.add(350, new Date(1, 10, 2024));
-CocaCola.add(200, new Date(1, 4, 2025));
-CocaCola.remove(50);
-CocaCola.getDesription();
+const Pepsi = new Beverage('Pepsi', 9000, 300, 'Không calo');
+const Mirinda = new Beverage('Mirinda', 7000, 250, 'Vị cam');
 
-// const Pepsi = new Beverage('Pepsi', 9000, 300, 'Không calo');
-// const Mirinda = new Beverage('Mirinda', 7000, 250, 'Vị cam');
+export const productList = [CocaCola, Pepsi, Mirinda];
