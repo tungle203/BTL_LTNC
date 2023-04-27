@@ -1,4 +1,5 @@
 export class Goods {
+
   constructor(id, quantity, expiryDate) {
     this.id = id;
     this.quantity = quantity;
@@ -33,6 +34,7 @@ class Product {
     this.quantity = 0;
     this.goods = [];
     this.description = '';
+
   }
 
   setName(name) {
@@ -89,12 +91,33 @@ class Product {
     this.quantity -= numOfProduct;
   }
 
-  toString() {
-    let descript = `Thống kê hàng xóa ${this.name}: ${this.quantity} sản phẩm\n`;
-    for (let i = 0; i < this.goods.length; i++) {
-      descript += this.goods[i].toString() + '\n';
+  // getAlmostExpired() {
+  //   let almostExpired = `Danh sách hàng hóa gần hết hạn (hạn sử dụng còn lại ít hơn 31 ngày):\n`;
+  //   for (let i = 0; i < this.goods.length; i++) {
+  //     if (this.getDaysDiff(this.goods[i].getExpiryDate()) < 31) {
+  //       almostExpired += this.goods[i].toString() + '\n';
+  //     } else {
+  //       break;
+  //     }
+  //   }
+  //   return almostExpired;
+  // }
+
+  almostExpired() {
+    let index = 0;
+    while (this.getDaysDiff(this.goods[i].getExpiryDate() < 31)) {
+      index++;
     }
-    return descript;
+    index--;
+    if (index >= 0) {
+      return this.goods.slice(0, index);
+    }
+  }
+
+  toString() {
+    let description = `Thống kê hàng xóa ${this.name}: ${this.quantity} sản phẩm\n`;
+    for (let i = 0; i < this.goods.length; i++) {
+      description += this.goods[i].toString() + '\n';
   }
 }
 
@@ -152,9 +175,3 @@ const Vinamilk = new Beverage('Vinamilk', 8000, 250, 'Sữa tươi tiệt trùng
 const Huda = new Beverage('Bia Huda', 18000, 330, 'Đậm tình miền Trung');
 
 export const BeverageList = [Coca, Pepsi, Vinamilk, Huda];
-
-// const coca1 = new Goods(11, 100, new Date('2024-1-1'));
-// const coca2 = new Goods(12, 350, new Date('2024-8-1'));
-// const coca3 = new Goods(13, 200, new Date('2025-4-1'));
-
-// const coca1 = {id: 12, count: 100, date: }
