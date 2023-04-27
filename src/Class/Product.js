@@ -22,7 +22,9 @@ class Goods {
   }
 
   toString() {
-    return `ID: ${this.id}, Quantity: ${this.quantity}, Expiry Date: ${this.expiryDate}`;
+    return `ID: ${this.id}, Quantity: ${
+      this.quantity
+    }, Expiry Date: ${this.expiryDate.getFullYear()}/${this.expiryDate.getMonth()}/${this.expiryDate.getDay()}`;
   }
 }
 
@@ -50,7 +52,6 @@ class Product {
     return this.price;
   }
 
-  // Tính khoảng cách giữa ngày hiện tại và ngày của đối tượng Goods
   getDaysDiff(expiryDate) {
     const today = new Date();
     const diffTime = Math.abs(expiryDate - today);
@@ -58,7 +59,6 @@ class Product {
     return diffDays;
   }
 
-  // Sắp xếp mảng goods theo khoảng cách từ bé đến lớn
   sort() {
     this.goods.sort((a, b) => {
       const diffA = this.getDaysDiff(new Date(a.getExpiryDate()));
@@ -83,12 +83,35 @@ class Product {
     this.quantity -= numOfProduct;
   }
 
-  toString() {
-    let descript = `Thống kê hàng xóa ${this.name}: ${this.quantity} sản phẩm\n`;
-    for (let i = 0; i < this.goods.length; i++) {
-      descript += this.goods[i].toString() + '\n';
+  // getAlmostExpired() {
+  //   let almostExpired = `Danh sách hàng hóa gần hết hạn (hạn sử dụng còn lại ít hơn 31 ngày):\n`;
+  //   for (let i = 0; i < this.goods.length; i++) {
+  //     if (this.getDaysDiff(this.goods[i].getExpiryDate()) < 31) {
+  //       almostExpired += this.goods[i].toString() + '\n';
+  //     } else {
+  //       break;
+  //     }
+  //   }
+  //   return almostExpired;
+  // }
+
+  almostExpired() {
+    let index = 0;
+    while (this.getDaysDiff(this.goods[i].getExpiryDate() < 31)) {
+      index++;
     }
-    return descript;
+    index--;
+    if (index >= 0) {
+      return this.goods.slice(0, index);
+    }
+  }
+
+  toString() {
+    let description = `Thống kê hàng xóa ${this.name}: ${this.quantity} sản phẩm\n`;
+    for (let i = 0; i < this.goods.length; i++) {
+      description += this.goods[i].toString() + '\n';
+    }
+    return description;
   }
 }
 
@@ -143,10 +166,11 @@ class Food extends Product {
 const Coca = new Beverage('Coca Cola', 10000, 330, 'Nguyên Bản');
 const coca1 = new Goods(11, 100, new Date('2024-1-1'));
 const coca2 = new Goods(12, 350, new Date('2024-8-1'));
-const coca3 = new Goods(13, 200, new Date('2025-4-1'));
+const coca3 = new Goods(13, 200, new Date('2023-5-1'));
 
 Coca.add(coca2);
 Coca.add(coca3);
 Coca.add(coca1);
 Coca.remove(12, 75);
 console.log(Coca.toString());
+console.log(Coca.getAlmostExpired());
