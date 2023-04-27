@@ -6,7 +6,7 @@ const cx = classNames.bind(styles);
 function ProductCard({ product }) {
   return (
     <div className={cx('wrapper')}>
-      <h4>{product.name}</h4>
+      <h4 className={cx('product-name')}>{product.name}</h4>
     </div>
   );
 }

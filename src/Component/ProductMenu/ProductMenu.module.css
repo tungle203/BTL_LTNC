@@ -6,4 +6,5 @@
   margin: 20px 0px 50px;
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }

@@ -9,16 +9,57 @@ function ModifyCard({ product, classNames, onCancel, onSubmit }) {
   const [count, setCount] = useState();
   return (
     <div className={cx('wrapper', classNames)}>
-      <h2>{product.getName()}</h2>
+      
+      <div className={cx('product-info')}>
+        <h2 className={cx('product-name')}>{product.getName()}</h2>
+        <div className={cx('detail')}>
+          <label className={cx('label')}>Giá:</label>
+          <p>100k</p>
+        </div>
+        <div className={cx('detail')}>
+          <label className={cx('label')}>Mô tả:</label>
+          <p>abc</p>
+        </div>
+      </div>
 
-      <input placeholder="Date..." type="date" value={date} onChange={(e) => setDate(e.target.value)} />
-      <input placeholder="Count..." type="number" value={count} onChange={(e) => setCount(e.target.value)} />
-      <button onClick={onCancel} className={cx('submit-btn')}>
-        Oke
-      </button>
-      <button onClick={onSubmit} className={cx('submit-btn')}>
-        Hủy
-      </button>
+      <table className={cx('status')}>
+        <thead>
+          <tr>
+            <td>Hạn sử dụng</td>
+            <td>Số lượng</td>
+            <td>Xóa</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>12/12/2121</td>
+            <td>69</td>
+            <td>Bin</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div className={cx('line')}></div>
+
+      <div className={cx('add')}>
+        <div className={cx('form')}>
+          <div className={cx('form-row')}>
+            <label className={cx('label')}>Hạn sử dụng</label>
+            <input className={cx('input')} type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+          </div>
+          
+          <div className={cx('form-row')}>
+            <label className={cx('label')}>Số lượng</label>
+            <input className={cx('input')} placeholder="Count..." type="number" value={count} onChange={(e) => setCount(e.target.value)} />
+          </div>
+        </div>
+        
+        <button onClick={onSubmit} className={cx('add-btn')}>Thêm</button>
+      </div>
+
+      <div className={cx('line')}></div>
+
+      <button onClick={onSubmit} className={cx('submit-btn')}>Oke</button>
     </div>
   );
 }
