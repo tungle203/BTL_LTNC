@@ -5,7 +5,7 @@ import Layout from './Layout';
 import Home from './Pages/Home';
 import Status from './Pages/Status';
 
-import { BeverageList, FoodList } from './Class/Product';
+import { BeverageList, FoodList } from './ProductClass';
 function App() {
   useEffect(() => {
     BeverageList.forEach((product) => {

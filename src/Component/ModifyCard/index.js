@@ -1,18 +1,20 @@
 import classNames from 'classnames/bind';
 import styles from './ModifyCard.module.css';
 import { useState } from 'react';
-import { Goods } from '../../Class/Product';
 
 const cx = classNames.bind(styles);
 
 function ModifyCard({ product, classNames, onCancel }) {
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState('2023-04-29');
   const [count, setCount] = useState(0);
 
   const handleSubmit = () => {
-    product.add(new Goods(1, count, date));
-    console.log(typeof count);
-    setCount(0);
+    if (count > 0) {
+      product.add(count, date);
+      setCount(0);
+    } else {
+      alert('Số lượng phải là số nguyên dương');
+    }
   };
   return (
     <div className={cx('wrapper', classNames)}>
