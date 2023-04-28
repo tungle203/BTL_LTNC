@@ -1,14 +1,13 @@
 import { useState } from 'react';
 import classNames from 'classnames/bind';
 
-import { BeverageList } from '../../Class/Product';
 import ProductCard from './ProductCard';
 import ModifyCard from '../ModifyCard';
 import styles from './ProductMenu.module.css';
 
 const cx = classNames.bind(styles);
 
-function ProductMenu() {
+function ProductMenu({ BeverageList, FoodList }) {
   const [show, setShow] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(BeverageList[0]);
 
@@ -46,8 +45,16 @@ function ProductMenu() {
 
       <h4>Thức uống</h4>
       <div className={cx('list')}>
-        {BeverageList.map((product, index) => (
-          <li key={index}>{<ProductCard product={product} />}</li>
+        {FoodList.map((product, index) => (
+          <li
+            key={index}
+            onClick={() => {
+              setShow(true);
+              setCurrentProduct(product);
+            }}
+          >
+            {<ProductCard product={product} />}
+          </li>
         ))}
       </div>
     </div>

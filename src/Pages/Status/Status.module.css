@@ -1,2 +1,21 @@
-.wrapper {
+.wrapper{
+  display: flex;
+}
+
+.expired{
+    width: 50%;
+    padding: 10px;
+}
+
+.overview{
+    width: 50%;
+    padding: 10px;
+}
+
+.expired-header{
+    color: red;
+}   
+
+.overview-header{
+    color: green;
 }

@@ -3,17 +3,16 @@ import { NavLink } from 'react-router-dom';
 import styles from './Sidebar.module.css';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faPlus, faRotate } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faRotate } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 function Sidebar() {
   const actions = [
     { title: 'Trang chủ', to: '/', icon: <FontAwesomeIcon icon={faHouse} /> },
-    { title: 'Thêm', to: '/add', icon: <FontAwesomeIcon icon={faPlus} /> },
     { title: 'Tình trạng', to: '/status', icon: <FontAwesomeIcon icon={faRotate} /> },
   ];
   return (
-    <div className={cx('wrapper')}>
+    <div className={cx('wrapper')} style={{ width: '15vw', minWidth: '140px', backgroundColor: '#1c1d2b' }}>
       <ul className={cx('wrapper-ul')}>
         {actions.map((action, index) => (
           <li key={index}>

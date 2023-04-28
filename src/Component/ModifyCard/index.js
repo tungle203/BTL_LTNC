@@ -11,6 +11,7 @@ function ModifyCard({ product, classNames, onCancel }) {
 
   const handleSubmit = () => {
     product.add(new Goods(1, count, date));
+    console.log(typeof count);
     setCount(0);
   };
   return (
@@ -19,11 +20,11 @@ function ModifyCard({ product, classNames, onCancel }) {
         <h2 className={cx('product-name')}>{product.getName()}</h2>
         <div className={cx('detail')}>
           <label className={cx('label')}>Giá:</label>
-          <p>100k</p>
+          <p>{product.getPrice()}</p>
         </div>
         <div className={cx('detail')}>
-          <label className={cx('label')}>Mô tả:</label>
-          <p>abc</p>
+          <label className={cx('label')}>Tổng số lượng:</label>
+          <p>{product.getCount()}</p>
         </div>
       </div>
 
@@ -32,15 +33,15 @@ function ModifyCard({ product, classNames, onCancel }) {
           <tr>
             <td>Hạn sử dụng</td>
             <td>Số lượng</td>
-            <td>Xóa</td>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>12/12/2121</td>
-            <td>69</td>
-            <td>Bin</td>
-          </tr>
+          {product.getGoods().map((item, index) => (
+            <tr key={index}>
+              <td>{item.getDate()}</td>
+              <td>{item.getCount()}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
 
@@ -52,19 +53,29 @@ function ModifyCard({ product, classNames, onCancel }) {
             <label className={cx('label')}>Hạn sử dụng</label>
             <input className={cx('input')} type="date" value={date} onChange={(e) => setDate(e.target.value)} />
           </div>
-          
+
           <div className={cx('form-row')}>
             <label className={cx('label')}>Số lượng</label>
-            <input className={cx('input')} placeholder="Count..." type="number" value={count} onChange={(e) => setCount(e.target.value)} />
+            <input
+              className={cx('input')}
+              placeholder="Count..."
+              type="number"
+              value={count}
+              onChange={(e) => setCount(parseInt(e.target.value))}
+            />
           </div>
         </div>
-        
-        <button onClick={onSubmit} className={cx('add-btn')}>Thêm</button>
+
+        <button onClick={handleSubmit} className={cx('add-btn')}>
+          Thêm
+        </button>
       </div>
 
       <div className={cx('line')}></div>
 
-      <button onClick={onSubmit} className={cx('submit-btn')}>Oke</button>
+      <button onClick={onCancel} className={cx('submit-btn')}>
+        Oke
+      </button>
     </div>
   );
 }
