@@ -1,13 +1,24 @@
-export class Goods {
-  constructor(count = 0, date) {
+class Goods {
+  constructor(id, count = 0, date) {
+    this.id = id;
     this.count = count;
     this.date = date;
   }
+
+  getId() {
+    return this.id;
+  }
+
   getCount() {
     return this.count;
   }
+
   getDate() {
     return this.date;
+  }
+
+  remove(numOfProduct) {
+    this.count -= numOfProduct;
   }
 }
 
@@ -44,9 +55,9 @@ class Product {
   store() {
     localStorage.setItem(`${this.name}`, JSON.stringify(this.goods));
   }
-  add(count, date) {
-    this.goods.push(new Goods(count, date));
-    this.count += count;
+  add(goods) {
+    this.goods.push(goods);
+    this.count += goods.getCount();
     this.sort();
     this.store();
   }
@@ -77,10 +88,8 @@ class Product {
 
   remove(expiredItem) {
     for (let i = 0; i < this.goods.length; i++) {
-      if (this.goods[i] === expiredItem) {
-        this.goods.splice(i, 1);
-        this.count -= expiredItem.getCount();
-      }
+      if (this.goods[i] === expiredItem) this.goods.splice(i, 1);
+      this.count -= expiredItem.getCount();
     }
     this.store();
   }
@@ -94,7 +103,7 @@ class Product {
   }
 }
 
-export class Beverage extends Product {
+class Beverage extends Product {
   constructor(name, price, volume, flavor) {
     super(name, price);
     this.volume = volume;
@@ -118,7 +127,7 @@ export class Beverage extends Product {
   }
 }
 
-export class Food extends Product {
+class Food extends Product {
   constructor(name, price, weight, calories) {
     super(name, price);
     this.weight = weight;
@@ -141,3 +150,16 @@ export class Food extends Product {
     return this.calories;
   }
 }
+
+const Coca = new Beverage('Coca Cola', 10000, 330, 'Nguyên Bản');
+const Pepsi = new Beverage('Pepsi', 10000, 330, 'Nguyên Bản');
+const Vinamilk = new Beverage('Vinamilk', 8000, 250, 'Sữa tươi tiệt trùng');
+const Huda = new Beverage('Bia Huda', 18000, 330, 'Đậm tình miền Trung');
+
+const BanhPia = new Food('Bánh Pía', 20000, 100, 500);
+const BanhBongLan = new Food('Bánh Bông Lan', 10000, 50, 100);
+const CaTuoi = new Food('Cá Tươi', 100000, 1000, 1000);
+const ChanGa = new Food('Chân gà', 20000, 100, 400);
+
+export const BeverageList = [Coca, Pepsi, Vinamilk, Huda];
+export const FoodList = [BanhPia, BanhBongLan, CaTuoi, ChanGa];
