@@ -1,7 +1,9 @@
+import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
 import classNames from 'classnames/bind';
 import styles from './ModifyCard.module.css';
-import { useState } from 'react';
-
 const cx = classNames.bind(styles);
 
 function ModifyCard({ product, classNames, onCancel }) {
@@ -15,6 +17,11 @@ function ModifyCard({ product, classNames, onCancel }) {
     } else {
       alert('Số lượng phải là số nguyên dương');
     }
+  };
+  const handleDelete = (product, item) => {
+    product.remove(item);
+    setCount(item.getCount());
+    setDate(item.getDate());
   };
   return (
     <div className={cx('wrapper', classNames)}>
@@ -55,6 +62,11 @@ function ModifyCard({ product, classNames, onCancel }) {
               <tr key={index}>
                 <td>{item.getDate()}</td>
                 <td>{item.getCount()}</td>
+                <td>
+                  <button className={cx('dele-btn')} onClick={() => handleDelete(product, item)}>
+                    <FontAwesomeIcon icon={faTrash} />
+                  </button>
+                </td>
               </tr>
             );
           })}

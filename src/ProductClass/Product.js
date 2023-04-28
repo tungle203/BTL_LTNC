@@ -12,7 +12,6 @@ class Goods {
   getDate() {
     return this.date;
   }
-
   remove(numOfProduct) {
     this.count -= numOfProduct;
   }
@@ -94,11 +93,11 @@ class Product {
     });
   }
 
-  remove(expiredItem) {
+  remove(item) {
     for (let i = 0; i < this.goods.length; i++) {
-      if (this.goods[i] === expiredItem) {
+      if (this.goods[i] === item) {
         this.goods.splice(i, 1);
-        this.count -= expiredItem.getCount();
+        this.count -= item.getCount();
       }
     }
     this.store();
