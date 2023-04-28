@@ -1,18 +1,14 @@
 class Goods {
-  constructor(id, count = 0, date) {
-    this.id = id;
+  constructor(count, date) {
     this.count = count;
     this.date = date;
   }
-
-  getId() {
-    return this.id;
-  }
-
   getCount() {
     return this.count;
   }
-
+  addCount(num) {
+    this.count += num;
+  }
   getDate() {
     return this.date;
   }
@@ -23,10 +19,11 @@ class Goods {
 }
 
 class Product {
-  constructor(name, price) {
+  constructor(name, price, des) {
     this.name = name;
     this.price = price;
     this.count = 0;
+    this.des = des;
     this.goods = [];
   }
 
@@ -51,13 +48,24 @@ class Product {
   getGoods() {
     return this.goods;
   }
-
+  getDes() {
+    return this.des;
+  }
   store() {
     localStorage.setItem(`${this.name}`, JSON.stringify(this.goods));
   }
-  add(goods) {
-    this.goods.push(goods);
-    this.count += goods.getCount();
+  add({ count, date }) {
+    let hasDate = false;
+    this.goods.forEach((item) => {
+      if (item.getDate() === date) {
+        item.addCount(count);
+        hasDate = true;
+      }
+    });
+    if (!hasDate) {
+      this.goods.push(new Goods(count, date));
+    }
+    this.count += count;
     this.sort();
     this.store();
   }
@@ -65,8 +73,8 @@ class Product {
   setGoods(goods = []) {
     goods &&
       goods.forEach((good) => {
-        const { id, count, date } = good;
-        this.add(new Goods(id, count, date));
+        const { count, date } = good;
+        this.add(new Goods(count, date));
       });
   }
   // Tính khoảng cách giữa ngày hiện tại và ngày của đối tượng Goods
@@ -88,8 +96,10 @@ class Product {
 
   remove(expiredItem) {
     for (let i = 0; i < this.goods.length; i++) {
-      if (this.goods[i] === expiredItem) this.goods.splice(i, 1);
-      this.count -= expiredItem.getCount();
+      if (this.goods[i] === expiredItem) {
+        this.goods.splice(i, 1);
+        this.count -= expiredItem.getCount();
+      }
     }
     this.store();
   }
@@ -97,69 +107,34 @@ class Product {
   almostExpired() {
     const almostExpiredList = [];
     this.goods.forEach((item) => {
-      if (this.getDaysDiff(item.getDate() < 31)) almostExpiredList.push(item);
+      if (this.getDaysDiff(new Date(item.getDate())) < 10) almostExpiredList.push(item);
     });
     return almostExpiredList;
   }
 }
 
-class Beverage extends Product {
-  constructor(name, price, volume, flavor) {
-    super(name, price);
+export class Beverage extends Product {
+  constructor(name, price, volume, des) {
+    super(name, price, des);
     this.volume = volume;
-    this.flavor = flavor;
   }
-
   setVolume(volume) {
     this.volume = volume;
   }
-
-  setFlavor(flavor) {
-    this.flavor = flavor;
-  }
-
   getVolume() {
     return this.volume;
   }
-
-  getFlavor() {
-    return this.flavor;
-  }
 }
 
-class Food extends Product {
-  constructor(name, price, weight, calories) {
-    super(name, price);
+export class Food extends Product {
+  constructor(name, price, weight, des) {
+    super(name, price, des);
     this.weight = weight;
-    this.calories = calories;
   }
-
   setWeight(weight) {
     this.weight = weight;
   }
-
-  setCalories(calories) {
-    this.calories = calories;
-  }
-
   getWeight() {
     return this.weight;
   }
-
-  getCalories() {
-    return this.calories;
-  }
 }
-
-const Coca = new Beverage('Coca Cola', 10000, 330, 'Nguyên Bản');
-const Pepsi = new Beverage('Pepsi', 10000, 330, 'Nguyên Bản');
-const Vinamilk = new Beverage('Vinamilk', 8000, 250, 'Sữa tươi tiệt trùng');
-const Huda = new Beverage('Bia Huda', 18000, 330, 'Đậm tình miền Trung');
-
-const BanhPia = new Food('Bánh Pía', 20000, 100, 500);
-const BanhBongLan = new Food('Bánh Bông Lan', 10000, 50, 100);
-const CaTuoi = new Food('Cá Tươi', 100000, 1000, 1000);
-const ChanGa = new Food('Chân gà', 20000, 100, 400);
-
-export const BeverageList = [Coca, Pepsi, Vinamilk, Huda];
-export const FoodList = [BanhPia, BanhBongLan, CaTuoi, ChanGa];

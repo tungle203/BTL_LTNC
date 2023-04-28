@@ -10,7 +10,7 @@ function ModifyCard({ product, classNames, onCancel }) {
 
   const handleSubmit = () => {
     if (count > 0) {
-      product.add(count, date);
+      product.add({ count, date });
       setCount(0);
     } else {
       alert('Số lượng phải là số nguyên dương');
@@ -24,6 +24,18 @@ function ModifyCard({ product, classNames, onCancel }) {
           <label className={cx('label')}>Giá:</label>
           <p>{product.getPrice()}</p>
         </div>
+        {'volume' in product && (
+          <div className={cx('detail')}>
+            <label className={cx('label')}>Thể tích:</label>
+            <p>{product.getVolume()}ml</p>
+          </div>
+        )}
+        {'weight' in product && (
+          <div className={cx('detail')}>
+            <label className={cx('label')}>Khối lượng:</label>
+            <p>{product.getWeight()}g</p>
+          </div>
+        )}
         <div className={cx('detail')}>
           <label className={cx('label')}>Tổng số lượng:</label>
           <p>{product.getCount()}</p>
@@ -38,12 +50,14 @@ function ModifyCard({ product, classNames, onCancel }) {
           </tr>
         </thead>
         <tbody>
-          {product.getGoods().map((item, index) => (
-            <tr key={index}>
-              <td>{item.getDate()}</td>
-              <td>{item.getCount()}</td>
-            </tr>
-          ))}
+          {product.getGoods().map((item, index) => {
+            return (
+              <tr key={index}>
+                <td>{item.getDate()}</td>
+                <td>{item.getCount()}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
 

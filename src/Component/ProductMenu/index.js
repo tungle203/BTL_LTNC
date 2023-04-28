@@ -20,7 +20,7 @@ function ProductMenu({ BeverageList, FoodList }) {
   };
   return (
     <div className={cx('wrapper')}>
-      <h4>Đồ ăn</h4>
+      <h4>Thức uống</h4>
       <div className={cx('list')}>
         {BeverageList.map((product, index) => (
           <li
@@ -43,7 +43,7 @@ function ProductMenu({ BeverageList, FoodList }) {
         }
       </div>
 
-      <h4>Thức uống</h4>
+      <h4>Đồ ăn</h4>
       <div className={cx('list')}>
         {FoodList.map((product, index) => (
           <li

@@ -1,87 +1,91 @@
-.wrapper{
+.wrapper {
   display: flex;
 }
 
-.expired-wrapper{
-    width: 40%;
-    padding: 10px;
+.expired-wrapper {
+  width: 30%;
+  padding: 10px;
 }
 
-.expired-header{
-    color: red;
-}  
+.expired-header {
+  color: red;
+}
 
-.expire-item{
-    font-size: 18px;
-    margin: 10px;
-    padding: 5px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+.expire-item {
+  font-size: 18px;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
-.date-quantity-remove{
-    display: flex;
-    padding: 5px 0px;
-    justify-content: space-around;
+
+.expire-name {
+  font-weight: 700;
 }
-.date-quantity{
-    min-width: 70px;
-    font-size: 16px;
+.date-quantity-remove {
+  display: flex;
+  padding: 5px 0px;
+  justify-content: space-around;
 }
-.remove-btn{
-    width: 40px;
-    height: 23px;
-    border-radius: 5px;
-    border: 2px solid #e96363;
-    padding: 2px;
-    transition: 0.3s;
+.date-quantity {
+  font-size: 15px;
+  font-weight: 500;
+}
+.remove-btn {
+  width: 40px;
+  height: 23px;
+  border-radius: 5px;
+  border: 2px solid #e96363;
+  padding: 2px;
+  transition: 0.3s;
 }
 .remove-btn:hover {
-    color: white;
-    background-color: #e96363;
-    cursor: pointer;
+  color: white;
+  background-color: #e96363;
+  cursor: pointer;
 }
 
-.overview-wrapper{
-    padding: 10px;
-    width: 60%;
+.overview-wrapper {
+  padding: 10px;
+  width: 60%;
 }
-.overview-header{
-    color: green;
-}
-
-.status{
-    width: 80%;
-    min-width: 500px;
-    margin: 5px;
-    border-collapse: collapse;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    border-radius: 10px 10px 0px 0px;
-    border-bottom: 2px solid rgb(0, 120, 0);
+.overview-header {
+  color: green;
 }
 
-th{
-    text-align: left;
-    color: white;
-    padding: 5px 8px;
-    background-color: rgb(0, 120, 0);
+.status {
+  width: 80%;
+  min-width: 500px;
+  margin: 5px;
+  border-collapse: collapse;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px 10px 0px 0px;
+  border-bottom: 2px solid rgb(0, 120, 0);
 }
 
-th:first-child{
-    border-radius: 10px 0px 0px;
+th {
+  text-align: left;
+  color: white;
+  padding: 5px 8px;
+  background-color: rgb(0, 120, 0);
 }
 
-th:last-child{ 
-    border-radius: 0px 10px 0px 0px;
+th:first-child {
+  border-radius: 10px 0px 0px;
 }
 
-td{
-    padding: 3px 8px;
-} 
-
-tr{
-    border-bottom: 1px solid #ccc;
+th:last-child {
+  border-radius: 0px 10px 0px 0px;
 }
 
-tr:last-child{
-    border-bottom: none;
+td {
+  padding: 3px 8px;
+}
+
+tr {
+  border-bottom: 1px solid #ccc;
+}
+
+tr:last-child {
+  border-bottom: none;
 }
